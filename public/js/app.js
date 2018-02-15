@@ -1,8 +1,9 @@
 window.addEventListener('load', function () {
   const $formSearch = $('#form-search');
   const $profileInfo = $('#profile-info');
+  let member;
+
   $formSearch.hide();
-  console.log($profileInfo);
 
   // Hace una llamada al api cuando la autenticación esta completa
   function onLinkedInLoad() {
@@ -21,6 +22,14 @@ window.addEventListener('load', function () {
     console.log('Logout successfully');
   }
 
+  function displayProfiles(profiles) {
+    console.log(profiles);
+    member = profiles.values[0];
+    console.log(member);
+  }
+
+
+
   // Use the API call wrapper to request the member's basic profile data
   function getProfileData() {
 
@@ -32,9 +41,9 @@ window.addEventListener('load', function () {
       var email = userdata.emailAddress;
       // console.log(profile_photo); // undefined
       // Añadiendo a la página
-    $profileInfo.append(`<h3>Bienvenida ${fname} ${lname}</h3>`);
-    $formSearch.show();
-    $('span').hide();
+      $profileInfo.append(`<h3>Bienvenida ${fname} ${lname}</h3>`);
+      $formSearch.show();
+      $('span').hide();
 
       logout();
     }).error(function (data) {
