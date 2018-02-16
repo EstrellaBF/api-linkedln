@@ -31,6 +31,10 @@ div#login-text svg {
   display: flex;
 }
 
+.check-info p {
+  padding-left: 0.7em;
+}
+
 .cv-page {
   background-color: #fff;
   border-radius: 10px;
@@ -50,4 +54,9 @@ div#login-text svg {
 
 .name h2 {
   display: inline-block;
+}
+
+.info, .job {
+  font-family: 'Montserrat', sans-serif;
+  line-height: 4em;
 }
