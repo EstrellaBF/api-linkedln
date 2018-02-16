@@ -1,6 +1,5 @@
-window.addEventListener('load', function () {
-
-  IN.Event.on(IN, "auth", getProfileData);
+$(document).ready(function() {
+  IN.Event.on(IN, 'auth', getProfileData);
 
   // Logout user
   function logout() {
@@ -13,8 +12,7 @@ window.addEventListener('load', function () {
 
   // Use the API call wrapper to request the member's basic profile data
   function getProfileData() {
-
-    IN.API.Profile("me").fields("first-name", "last-name", "email-address", "picture-url", "location", "industry", "current-share", "num-connections", "summary", "specialties", "positions")
+    IN.API.Profile('me').fields('first-name', 'last-name', 'email-address', 'picture-url', 'location', 'industry', 'current-share', 'num-connections', 'summary', 'specialties', 'positions')
       .result(function(data) {
         var userdata = data.values[0];
         // console.log(userdata.positions.values);
@@ -31,6 +29,4 @@ window.addEventListener('load', function () {
         console.log(data);
       });
   }
-
-
 });
