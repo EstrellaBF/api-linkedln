@@ -1,6 +1,5 @@
 $(document).ready(function() {
   let $infoLoginText = $('#info-login-text');
-  console.log($infoLoginText);
   IN.Event.on(IN, 'auth', getProfileData);
 
   // Logout user
