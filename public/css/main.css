@@ -5,14 +5,44 @@
 }
 
 body {
-  background-color: #2b3e50;
+  background-color: #2b3e50;    
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-#login-text{
+.login-text{
   background-color: #fff;
+  border-radius: 10px;
   font-family: 'Montserrat', sans-serif;
+  padding: 2em;
+  margin-top: 3em;
 }
 
-#profile-info {
+div#login-text svg {
+  color: #4a6986;
+}
+
+.profile-info {
   background-color: #fff;
+}
+
+.check-info {
+  display: flex;
+}
+
+.cv-page {
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 2em;
+  width: 95vw;
+}
+
+.name img {
+  border-radius: 50%;
+  vertical-align: top;
+}
+
+.name h2 {
+  display: inline-block;
 }

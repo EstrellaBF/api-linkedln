@@ -1,37 +1,43 @@
 window.addEventListener('load', function () {
-  // $(document).ready(function () {
-  const $formSearch = $('#form-search');
-  const $profileInfo = $('#profile-info');
-  let member;
 
 
-  $formSearch.hide();
-  // Removing event listener by calling IN.Event.on() outside of onLinkedInLoad()
+  // Setup an event listener to make an API call once auth is complete
+  // function onLinkedInLoad() {
+  //   IN.Event.on(IN, "auth", getProfileData);
+  // }
+
 
   IN.Event.on(IN, "auth", getProfileData);
-  // Handle the successful return from the API call
-  function onSuccess(data) {
-    console.log(data);
-    console.log(data.firstName);
-    console.log(data.lastName);
-    console.log(data.headline);
-    // Añadiendo a la página
-    $profileInfo.append(`<h3>PROFILE LINKEDIN</h3><p>${data.firstName} ${data.lastName}</p><p>${data.headline}</p>`);
-    $formSearch.show();
-    $('span').hide();
-    $('#login-text').hide();
+
+  // Logout user
+  function logout() {
+    IN.User.logout(onLogout);
   }
 
-  // Handle an error response from the API call
-  function onError(error) {
-    console.log(error);
+  function onLogout() {
+    console.log('Logout successfully');
   }
 
   // Use the API call wrapper to request the member's basic profile data
   function getProfileData() {
-    IN.API.Raw("/people/~").result(onSuccess).error(onError);
+
+    IN.API.Profile("me").fields("first-name", "last-name", "email-address", "picture-url", "location", "industry", "current-share", "num-connections", "summary", "specialties", "positions")
+      .result(function(data) {
+        var userdata = data.values[0];
+        // console.log(userdata.positions.values);
+        $('#login-text').hide();
+        // Añadiendo al DOM
+        $('#about-webapp').append(`<div class="row"><div class="col s12 col m12 col l10">
+        <div class="cv-page">
+        <div class="name"><img src="${userdata.pictureUrl}"><h2>${userdata.firstName} ${userdata.lastName}</h2></div>
+        <div class="info"><p>Email: ${userdata.emailAddress}</p><p>About me: ${userdata.summary}</p><p>Industry: ${userdata.industry}</p><p>Connections at Linkedin: ${userdata.numConnections}</p></div>
+        <div class="jobs"><p>Last job: ${userdata.positions.values[0].company.name}</p><p>Position :${userdata.positions.values[0].title}</p></div>
+        <div></div>
+        </div></div></div>`);
+      }).error(function(data) {
+        console.log(data);
+      });
   }
 
 
 });
-
