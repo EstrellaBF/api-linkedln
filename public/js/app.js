@@ -1,5 +1,6 @@
 $(document).ready(function() {
   let $infoLoginText = $('#info-login-text');
+  const $checkInfo =  $('#check-info');
   IN.Event.on(IN, 'auth', getProfileData);
 
   // Logout user
@@ -15,6 +16,7 @@ $(document).ready(function() {
   function getProfileData() {
     IN.API.Profile('me').fields('first-name', 'last-name', 'email-address', 'picture-url', 'location', 'industry', 'current-share', 'num-connections', 'summary', 'specialties', 'positions')
       .result(function(data) {
+        $checkInfo.hide();
         var userdata = data.values[0];
         // console.log(userdata.positions.values);
         $('#login-text').hide();
