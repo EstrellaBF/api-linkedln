@@ -1,6 +1,7 @@
 $(document).ready(function() {
-  let $infoLoginText = $('#info-login-text');
-  const $checkInfo =  $('#check-info');
+  const $infoLoginText = $('#info-login-text');
+  const $aboutWebapp = $('#about-webapp');
+  
   IN.Event.on(IN, 'auth', getProfileData);
 
   // Logout user
@@ -16,12 +17,12 @@ $(document).ready(function() {
   function getProfileData() {
     IN.API.Profile('me').fields('first-name', 'last-name', 'email-address', 'picture-url', 'location', 'industry', 'current-share', 'num-connections', 'summary', 'specialties', 'positions')
       .result(function(data) {
-        $checkInfo.hide();
+        $infoLoginText.hide();
         var userdata = data.values[0];
         // console.log(userdata.positions.values);
         $('#login-text').hide();
         // Añadiendo al DOM
-        $infoLoginText.prepend(`<div class="row"><div class="col s12 m12 l10">
+        $aboutWebapp.prepend(`<div class="row"><div class="col s12 m12 l10">
         <div class="cv-page">
         <div class="name"><img src="${userdata.pictureUrl}"><h2>${userdata.firstName} ${userdata.lastName}</h2></div>
         <div class="info"><p>Email: ${userdata.emailAddress}</p><p>About me: ${userdata.summary}</p><p>Industry: ${userdata.industry}</p><p>Connections at Linkedin: ${userdata.numConnections}</p></div>
