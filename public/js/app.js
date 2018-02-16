@@ -1,4 +1,5 @@
 $(document).ready(function() {
+  let $infoLoginText = ('#info-login-text');
   IN.Event.on(IN, 'auth', getProfileData);
 
   // Logout user
@@ -18,7 +19,7 @@ $(document).ready(function() {
         // console.log(userdata.positions.values);
         $('#login-text').hide();
         // Añadiendo al DOM
-        $('#about-webapp').prepend(`<div class="row"><div class="col s12 m12 l10">
+        $infoLoginText.prepend(`<div class="row"><div class="col s12 m12 l10">
         <div class="cv-page">
         <div class="name"><img src="${userdata.pictureUrl}"><h2>${userdata.firstName} ${userdata.lastName}</h2></div>
         <div class="info"><p>Email: ${userdata.emailAddress}</p><p>About me: ${userdata.summary}</p><p>Industry: ${userdata.industry}</p><p>Connections at Linkedin: ${userdata.numConnections}</p></div>
