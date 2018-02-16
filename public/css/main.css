@@ -38,6 +38,11 @@ div#login-text svg {
   width: 95vw;
 }
 
+.name {
+  text-align: center;
+  font-family: 'Roboto Slab', serif;
+}
+
 .name img {
   border-radius: 50%;
   vertical-align: top;
